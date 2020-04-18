@@ -1,0 +1,12 @@
+
+configFile=/home/masum/Desktop/Hawk_Q/dirList
+
+#include config file 
+source $configFile
+#variables are ->  hawkDir , eigenstratDir , dataDir ,jellyfishDir ,sortDir
+
+
+for srr in `cat links.txt`
+do
+	$sratoolkitDir/bin/prefetch ${srr}
+done

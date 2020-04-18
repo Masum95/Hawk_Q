@@ -1,0 +1,71 @@
+CORES=30 #number of cores to use for blast searches
+KMERSIZE=31 # RD:61
+
+#modified from NIKS script
+
+configFile=/home/masum/Desktop/Hawk_Q/dirList
+
+#include config file 
+source $configFile
+#variables are ->  hawkDir , eigenstratDir , $dataDir ,jellyfishDir ,$sortDir
+
+
+cd ${dataDir}
+
+
+for file in `cat links.txt*`
+do
+	OUTPREFIX=$file
+	echo $OUTPREFIX	
+
+	
+	cd ${file}
+
+	$sratoolkitDir/bin/fastq-dump ${dataDir}/${file}/${file}.sra
+
+	mkdir ${OUTPREFIX}_kmers
+
+	${jellyfishDir}/jellyfish count -C -o ${OUTPREFIX}_kmers/tmp -m ${KMERSIZE} -t ${CORES} -s 512M *.fastq 	#change if gzipped
+
+	COUNT=$(ls ${OUTPREFIX}_kmers/tmp* |wc -l)
+	echo $COUNT
+
+	if [ $COUNT -eq 1 ]
+	then
+ 		mv ${OUTPREFIX}_kmers/tmp_0 ${OUTPREFIX}_kmers_jellyfish
+	else
+		${jellyfishDir}/jellyfish merge -o ${OUTPREFIX}_kmers_jellyfish ${OUTPREFIX}_kmers/tmp*
+	fi
+	rm -rf ${OUTPREFIX}_kmers
+	
+	COUNT=$(ls ${OUTPREFIX}_kmers_jellyfish |wc -l)
+
+	if [ $COUNT -eq 1 ]
+	then
+
+		${jellyfishDir}/jellyfish histo -f -o ${OUTPREFIX}.kmers.hist.csv -t ${CORES} ${OUTPREFIX}_kmers_jellyfish
+		awk '{print $2"\t"$1}' ${OUTPREFIX}.kmers.hist.csv > ${OUTPREFIX}_tmp
+		mv ${OUTPREFIX}_tmp ${OUTPREFIX}.kmers.hist.csv
+
+		awk -f ${hawkDir}/countTotalKmer.awk ${OUTPREFIX}.kmers.hist.csv >> ${dataDir}/total_kmer_counts.txt
+
+		CUTOFF=1 
+		echo $CUTOFF > ${OUTPREFIX}_cutoff.csv
+
+
+		${jellyfishDir}/jellyfish dump -c -L `expr $CUTOFF + 1` ${OUTPREFIX}_kmers_jellyfish > ${OUTPREFIX}_kmers.txt 
+		sort --parallel=${CORES} -n -k 1 ${OUTPREFIX}_kmers.txt > ${OUTPREFIX}_kmers_sorted.txt
+	
+		rm ${OUTPREFIX}_kmers_jellyfish	
+		rm ${OUTPREFIX}_kmers.txt		
+			
+		echo "${dataDir}/${OUTPREFIX}/${OUTPREFIX}_kmers_sorted.txt" >> ${dataDir}/sorted_files.txt
+		
+	fi
+
+	rm *.fastq
+
+	cd ..
+
+done
+

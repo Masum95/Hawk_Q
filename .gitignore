@@ -1,0 +1,205 @@
+.DS_Store
+dataset/
+*.o
+*.out
+supplements/Untitled Folder/50sample/
+
+*.kmerDiff
+
+./lin_reg
+./dataset/SRR3050870/SRR3050870_kmers_sorted.txt
+./dataset/SRR3050870/SRR3050870.sra
+./dataset/SRR3050868/SRR3050868.sra
+./dataset/SRR3050868/SRR3050868_kmers_sorted.txt
+./dataset/SRR3050878/SRR3050878_kmers_sorted.txt
+./dataset/SRR3050878/SRR3050878.sra
+./dataset/SRR3050890/SRR3050890.sra
+./dataset/SRR3050890/SRR3050890_kmers_sorted.txt
+./dataset/SRR3050879/SRR3050879.sra
+./dataset/SRR3050879/SRR3050879_kmers_sorted.txt
+./dataset/SRR3050865/SRR3050865_kmers_sorted.txt
+./dataset/SRR3050865/SRR3050865.sra
+./dataset/SRR3050882/SRR3050882.sra
+./dataset/SRR3050882/SRR3050882_kmers_sorted.txt
+./dataset/SRR3050848/SRR3050848.sra
+./dataset/SRR3050848/SRR3050848_kmers_sorted.txt
+./dataset/SRR3050860/SRR3050860.sra
+./dataset/SRR3050860/SRR3050860_kmers_sorted.txt
+./dataset/SRR3050880/SRR3050880.sra
+./dataset/SRR3050880/SRR3050880_kmers_sorted.txt
+./dataset/SRR3050855/SRR3050855_kmers_sorted.txt
+./dataset/SRR3050855/SRR3050855.sra
+./dataset/SRR3050866/SRR3050866_kmers_sorted.txt
+./dataset/SRR3050866/SRR3050866.sra
+./dataset/SRR3050854/SRR3050854.sra
+./dataset/SRR3050854/SRR3050854_kmers_sorted.txt
+./dataset/SRR3050876/SRR3050876.sra
+./dataset/SRR3050876/SRR3050876_kmers_sorted.txt
+./dataset/SRR3050862/SRR3050862_kmers_sorted.txt
+./dataset/SRR3050862/SRR3050862.sra
+./dataset/SRR3050883/SRR3050883.sra
+./dataset/SRR3050883/SRR3050883_kmers_sorted.txt
+./dataset/SRR3050845/SRR3050845.sra
+./dataset/SRR3050845/SRR3050845_kmers_sorted.txt
+./dataset/SRR3050869/SRR3050869_kmers_sorted.txt
+./dataset/SRR3050869/SRR3050869.sra
+./dataset/SRR3050885/SRR3050885_kmers_sorted.txt
+./dataset/SRR3050885/SRR3050885.sra
+./dataset/SRR3050859/SRR3050859_kmers_sorted.txt
+./dataset/SRR3050859/SRR3050859.sra
+./dataset/SRR3050849/SRR3050849_kmers_sorted.txt
+./dataset/SRR3050849/SRR3050849.sra
+./dataset/SRR3050892/SRR3050892_kmers_sorted.txt
+./dataset/SRR3050892/SRR3050892.sra
+./dataset/SRR3050863/SRR3050863.sra
+./dataset/SRR3050863/SRR3050863_kmers_sorted.txt
+./dataset/SRR3050873/SRR3050873.sra
+./dataset/SRR3050873/SRR3050873_kmers_sorted.txt
+./dataset/SRR3050850/SRR3050850.sra
+./dataset/SRR3050850/SRR3050850_kmers_sorted.txt
+./dataset/SRR3050846/SRR3050846_kmers_sorted.txt
+./dataset/SRR3050846/SRR3050846.sra
+./dataset/SRR3050861/SRR3050861_kmers_sorted.txt
+./dataset/SRR3050861/SRR3050861.sra
+./dataset/SRR3050864/SRR3050864.sra
+./dataset/SRR3050864/SRR3050864_kmers_sorted.txt
+./dataset/SRR3050858/SRR3050858.sra
+./dataset/SRR3050858/SRR3050858_kmers_sorted.txt
+./dataset/SRR3050895/SRR3050895.sra
+./dataset/SRR3050895/SRR3050895_kmers_sorted.txt
+./dataset/SRR3050871/SRR3050871.sra
+./dataset/SRR3050871/SRR3050871_kmers_sorted.txt
+./dataset/SRR3050852/SRR3050852.sra
+./dataset/SRR3050852/SRR3050852_kmers_sorted.txt
+./dataset/SRR3050893/SRR3050893.sra
+./dataset/SRR3050893/SRR3050893_kmers_sorted.txt
+./dataset/SRR3050886/SRR3050886.sra
+./dataset/SRR3050886/SRR3050886_kmers_sorted.txt
+./dataset/SRR3050851/SRR3050851.sra
+./dataset/SRR3050851/SRR3050851_kmers_sorted.txt
+./dataset/SRR3050856/SRR3050856.sra
+./dataset/SRR3050856/SRR3050856_kmers_sorted.txt
+./dataset/SRR3050894/SRR3050894_kmers_sorted.txt
+./dataset/SRR3050894/SRR3050894.sra
+./dataset/SRR3050875/SRR3050875.sra
+./dataset/SRR3050875/SRR3050875_kmers_sorted.txt
+./dataset/SRR3050881/SRR3050881_kmers_sorted.txt
+./dataset/SRR3050881/SRR3050881.sra
+./dataset/SRR3050889/SRR3050889.sra
+./dataset/SRR3050889/SRR3050889_kmers_sorted.txt
+./dataset/SRR3050872/SRR3050872_kmers_sorted.txt
+./dataset/SRR3050872/SRR3050872.sra
+./dataset/SRR3050891/SRR3050891.sra
+./dataset/SRR3050891/SRR3050891_kmers_sorted.txt
+./dataset/SRR3050874/SRR3050874_kmers_sorted.txt
+./dataset/SRR3050874/SRR3050874.sra
+./dataset/SRR3050888/SRR3050888.sra
+./dataset/SRR3050888/SRR3050888_kmers_sorted.txt
+./dataset/SRR3050877/SRR3050877_kmers_sorted.txt
+./dataset/SRR3050877/SRR3050877.sra
+./dataset/SRR3050887/SRR3050887_kmers_sorted.txt
+./dataset/SRR3050887/SRR3050887.sra
+./dataset/SRR3050847/SRR3050847_kmers_sorted.txt
+./dataset/SRR3050847/SRR3050847.sra
+./dataset/SRR3050884/SRR3050884.sra
+./dataset/SRR3050884/SRR3050884_kmers_sorted.txt
+./dataset/SRR3050857/SRR3050857.sra
+./dataset/SRR3050857/SRR3050857_kmers_sorted.txt
+./dataset/SRR3050853/SRR3050853.sra
+./dataset/SRR3050853/SRR3050853_kmers_sorted.txt
+./hawk_q
+./hawk
+./cpp/manual.cpp.html
+./cpp/src/dataanalysis.cpp
+./cpp/src/interpolation.cpp
+./cpp/src/linalg.cpp
+./cpp/tests/test_c.cpp
+./supplements/EIG6.0.1-Hawk.tar.gz
+./supplements/Untitled Folder/compareFile2
+./supplements/Untitled Folder/out_unique_sorted.kmerDiff
+./supplements/Untitled Folder/gwas_eigenstratX.geno
+./supplements/Untitled Folder/5sample/case_out_wo_bonf.kmerDiff
+./supplements/Untitled Folder/5sample/control_out_wo_bonf.kmerDiff
+./supplements/Untitled Folder/5sample/compareFile
+./supplements/Untitled Folder/5sample/out_wo_bonf.kmerDiff
+./supplements/Untitled Folder/match_q.kmerdiff
+./supplements/Untitled Folder/out_unique.kmerDiff
+./supplements/Untitled Folder/out_unique_top.kmerDiff
+./supplements/Untitled Folder/out_wo_bonf_top.kmerDiff
+./supplements/Untitled Folder/Untitled Folder/gwas_eigenstratX.geno
+./supplements/Untitled Folder/Untitled Folder/out_unique.kmerDiff
+./supplements/Untitled Folder/Untitled Folder/gwas_eigenstratX.snp
+./supplements/Untitled Folder/Untitled Folder/out_wo_bonf.kmerDiff
+./supplements/Untitled Folder/pvals_top_merged_sorted.txt
+./supplements/Untitled Folder/compareFile
+./supplements/Untitled Folder/log_hawkq
+./supplements/Untitled Folder/gwas_eigenstratX.snp
+./supplements/Untitled Folder/compareFile_wbonf
+./supplements/Untitled Folder/pvals_top_merged.txt
+./supplements/Untitled Folder/out_wo_bonf_sorted.kmerDiff
+./supplements/Untitled Folder/50sample/case_out_w_bonf_sorted.kmerDiff
+./supplements/Untitled Folder/50sample/control_out_w_bonf_sorted.kmerDiff
+./supplements/Untitled Folder/50sample/case_out_wo_bonf.kmerDiff
+./supplements/Untitled Folder/50sample/out_unique.kmerDiff
+./supplements/Untitled Folder/50sample/control_out_wo_bonf.kmerDiff
+./supplements/Untitled Folder/50sample/compareFile
+./supplements/Untitled Folder/50sample/compareFile_wbonf
+./supplements/Untitled Folder/50sample/out_wo_bonf.kmerDiff
+./supplements/Untitled Folder/50sample2/compareFile2
+./supplements/Untitled Folder/50sample2/case_out_w_bonf_sorted.kmerDiff
+./supplements/Untitled Folder/50sample2/control_out_w_bonf_sorted.kmerDiff
+./supplements/Untitled Folder/50sample2/pvals_top.txt
+./supplements/Untitled Folder/50sample2/case_out_wo_bonf.kmerDiff
+./supplements/Untitled Folder/50sample2/out_unique.kmerDiff
+./supplements/Untitled Folder/50sample2/control_out_wo_bonf.kmerDiff
+./supplements/Untitled Folder/50sample2/compareFile
+./supplements/Untitled Folder/50sample2/out_wo_bonf.kmerDiff2
+./supplements/Untitled Folder/50sample2/out_unique.kmerDiff2
+./supplements/Untitled Folder/50sample2/out_wo_bonf.kmerDiff
+./supplements/Untitled Folder/out_wo_bonf.kmerDiff
+./supplements/jellyfish-Hawk.tar.gz
+./supplements/jellyfish-Hawk/jellyfish/mer_counter.o
+./supplements/jellyfish-Hawk/bin/jellyfish
+./supplements/jellyfish-Hawk/.libs/libjellyfish.a
+./supplements/jellyfish-Hawk/.libs/libjellyfish.so.1.1.0
+./supplements/EIG6.0.1-Hawk/src/oldsrc/eigensrc/smartpca
+./supplements/EIG6.0.1-Hawk/bin/smartpca
+./supplements/EIG6.0.1-Hawk/bin/oldsmartpca
+./supplements/EIG6.0.1-Hawk/include/lapacke.h
+./.git/objects/6a/9e2eee9eebbdf1984a91e426ff6ae4cdee2555
+./.git/objects/f6/8d7791c483f98dbe6ad4313cb046ec504bf415
+./.git/objects/15/16ae3b42b20be02ba4dd5f571ad84f527d8738
+./.git/objects/c9/75407197debd0f144818f56efece37d58f48a1
+./.git/objects/ab/2231d49a220d228eff1c52370b10abb7c4c3bd
+./.git/objects/89/71087b014258391b4e6ab512ce462346b648e7
+./.git/objects/5a/53fc335772b5abcb602b55e256ae7efb4e1d90
+./.git/objects/96/72a0edc4779c1f107c7e9e1514fa065dce8c13
+./.git/objects/58/6453a9afd5699cc7337a93de6ef904078e5881
+./.git/objects/54/cccea682a857c0ee7bfc7e19eb525086718c38
+./.git/objects/ee/248e0f86dff5d26f4baec95c4ce769534d5d06
+./.git/objects/67/ce61ffc8312e26f13af0705664df86dba9803d
+./.git/objects/67/a01fe7475378f6bba4b967c34e65b49136097e
+./.git/objects/50/2c95bf5c428e2d9ee883b93a75dcdb640f4da2
+./.git/objects/2c/e9ae66c67ebe491ea87fb9507463a04baba112
+./.git/objects/19/4fe6990176ed70e563c3bdc2f249021bfd75ff
+./Eigen/src/misc/lapacke.h
+
+*.csv
+
+*.txt
+
+*.sra
+
+supplements/Untitled Folder/50sample2/
+
+supplements/Untitled Folder/
+
+test
+
+test.cpp
+
+*.fasta
+
+*.evec
+
+supplements/Untitled Folder 2/

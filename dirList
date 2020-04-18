@@ -1,0 +1,8 @@
+#!/bin/bash
+
+hawkDir=/home/masum/Desktop/Hawk_Q
+eigenstratDir=/home/masum/Desktop/Hawk_Q/supplements/EIG6.0.1-Hawk
+dataDir=/home/masum/Desktop/Hawk_Q/ecoli_analysis
+jellyfishDir=/home/masum/Desktop/Hawk_Q/supplements/jellyfish-Hawk/bin
+sortDir=/usr/bin
+sratoolkitDir=/mnt/68440F84440F53EA/Download/sratoolkit.2.10.0-ubuntu64

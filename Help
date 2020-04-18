@@ -1,0 +1,30 @@
+first parameter-> nosample
+Input File - > total_kmer_counts.txt
+phenotype_values
+out_wo_bonf.kmerDiff
+Outfile -> out_wo_bonf.kmerDiff
+
+
+
+The evec2pca.perl program is for users who want to run the EIGENSTRAT
+stratification correction method on on output produced by the smartpca program.
+
+
+example.evec is file of principal components produced by smartpca
+example.ind is individual file
+example.pca is file of principal components in file needed by eigenstrat
+
+
+  smartpca: run Principal Components Analysis on input genotype data.
+  ploteig: construct plot of top 2 principal components
+  twstats: compute number of statistically significant principal components.
+  evec2pca.perl: convert eigenvector file to format needed for EIGENSTRAT  
+  smartrel: identify related samples, accounting for population structure
+
+
+total_kmer_counts.txt :- Total number of kmers in each sample 
+gwas_eigenstratX.ind :- 0, 1 -> case, control 
+out_wo_bonf_sorted.kmerDiff:-> kmer kmer_p_val cnt_in_samples 
+gwas_eigenstrat.pca -> top 10 pca and samples new coordinates under these pca 
+File Format : 
+---------------------------
