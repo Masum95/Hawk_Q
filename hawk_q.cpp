@@ -43,11 +43,21 @@ pthread_mutex_t outFile_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t hashTable_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t eigenFile_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t countKmer_mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t filewrite_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 FILE *eigenGenoFile;
 FILE *eigenSNPFile;
 
 #pragma pack(push, 1)
+
+template <typename _T>
+string NumberToString(_T Number)
+{
+	ostringstream ss;
+	ss << Number;
+	return ss.str();
+}
+
 class Kmer
 {
 public:
@@ -188,7 +198,6 @@ Kmer::~Kmer()
 void Kmer::freeMemory()
 {
 	delete[] counts;
-
 }
 
 void Kmer::show()
@@ -318,7 +327,7 @@ void HashTable::computeNullLikelihood()
 
 	for (int k = 0; k < noSamples; k++) // first 2 parts should be out of loop ?
 	{
-		likelihoodNULL += (-log(e_null)/2.0 - logPI - (y[k] - y_mean) * (y[k] - y_mean) / (2 * e_null ));
+		likelihoodNULL += (-log(e_null) / 2.0 - logPI - (y[k] - y_mean) * (y[k] - y_mean) / (2 * e_null));
 	}
 	//cout << "Null Likelihood " << likelihoodNULL << endl;
 }
@@ -387,19 +396,19 @@ void *likelihoodRatio_thread(void *threadid)
 				e_alt += (y[k] - y_p) * (y[k] - y_p);
 			}
 
-			e_alt = e_alt/noSamples;
+			e_alt = e_alt / noSamples;
 			// e_alt = sqrt(e_alt / noSamples); #variance needed, not stdev
 
 			likelihoodNull = ht->likelihoodNULL, likelihoodAlt = 0;
 			//CHK
 			double likelihoodAlt2 = 0;
-		
-			for (int k = 0; k < noSamples; k++)
-			{
-				double y_p = y[k] - (result[0] + result[1] * x[k]);
-				likelihoodAlt += (-log(e_alt)/2 - logPI - (y_p * y_p ) / (2 * e_alt ));
-			}
-			// likelihoodAlt = (-log(e_alt)/2.0 * noSamples - logPI * noSamples - noSamples/2.0 );
+
+			// for (int k = 0; k < noSamples; k++)
+			// {
+			// 	double y_p = y[k] - (result[0] + result[1] * x[k]);
+			// 	likelihoodAlt += (-log(e_alt)/2 - logPI - (y_p * y_p ) / (2 * e_alt ));
+			// }
+			likelihoodAlt = (-log(e_alt) / 2.0 * noSamples - logPI * noSamples - noSamples / 2.0);
 			// if( abs(likelihoodAlt - likelihoodAlt2) >= 0.00005){
 			// 	cout<<likelihoodAlt<<" - "<<likelihoodAlt2<<endl;
 			// }
@@ -409,10 +418,25 @@ void *likelihoodRatio_thread(void *threadid)
 			{
 				likelihoodRatio = 0;
 			}
-
 			double pVal = alglib::chisquarecdistribution(1, 2 * likelihoodRatio);
 
 			ht->kmers[i][j]->pVal = pVal;
+
+			// for plotting purpose
+			// if (pVal <= 1e-18)
+			// {
+			// 	pthread_mutex_lock(&filewrite_mutex);
+
+			// 	ofstream myfile;
+			// 	string fileName = "kmerdata" + NumberToString(i) + NumberToString(j);
+			// 	myfile.open(fileName.c_str());
+			// 	for (int k = 0; k < noSamples; k++) // loop over sample for jth kmer
+			// 	{
+			// 		myfile << x[k] << "," << y[k] << endl;
+			// 	}
+			// 	myfile.close();
+			// 	pthread_mutex_unlock(&filewrite_mutex);
+			// }
 			done++;
 		}
 	}
@@ -481,7 +505,8 @@ void *dump_thread(void *threadid)
 			}
 
 			// print all kmer to BONF_KMERDIFF_FILE for which we reject null hypothesis. That is significat kmer
-			if (ht->kmers[i][j]->pVal <= pValThreshold && ht->kmers[i][j]->forPval == 'y')
+			//if (ht->kmers[i][j]->pVal <= pValThreshold && ht->kmers[i][j]->forPval == 'y')
+			//if (ht->kmers[i][j]->forPval == 'y')
 			{
 				pthread_mutex_lock(&outFile_mutex);
 

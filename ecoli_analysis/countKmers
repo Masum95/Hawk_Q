@@ -27,6 +27,10 @@ do
 
 	${jellyfishDir}/jellyfish count -C -o ${OUTPREFIX}_kmers/tmp -m ${KMERSIZE} -t ${CORES} -s 512M *.fastq 	#change if gzipped
 
+	#To count psedugenome, set -c to smaller value 
+	# ${jellyfishDir}/jellyfish count -c2 -L0 -C -o ${OUTPREFIX}_kmers/tmp -m ${KMERSIZE} -t ${CORES} -s 512M *.fastq 	#change if gzipped
+
+
 	COUNT=$(ls ${OUTPREFIX}_kmers/tmp* |wc -l)
 	echo $COUNT
 

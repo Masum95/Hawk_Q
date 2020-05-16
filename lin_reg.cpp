@@ -38,6 +38,7 @@ ifstream feature_z_file;
 ifstream ind_file;
 ifstream total_file;
 ifstream cov_file;
+ofstream pval_file;
 
 /*-------------------------------------------------File Dependency------------------------------------------------------*/
 
@@ -45,6 +46,8 @@ const char *EIGEN_IND_FILE = "gwas_eigenstratX.ind";
 const char *BONF_KMERDIFF_TOP_FILE = "out_unique.kmerDiff";
 const char *PCS_EVEC_FILE = "pcs.evec";
 const char *TOTAL_KMER_CNT_FILE = "gwas_eigenstratX.total";
+
+const char *PVALS_TOP_FILE = "pvals_top2.txt";
 
 /*-------------------------------------------------File Dependency End------------------------------------------------------*/
 
@@ -96,7 +99,7 @@ MatrixXd C;
 // std::vector<double> Y;
 MatrixXd Y;
 std::vector<unsigned long long int> totals;
-std::vector<std::vector<unsigned long long int>> kmercounts;
+std::vector<std::vector<unsigned long long int> > kmercounts;
 std::vector<double> output;
 // std::vector<std::vector<double> > global_features_NULL;
 MatrixXd global_features_NULL;
@@ -272,17 +275,22 @@ int main(int argc, char **argv)
 		global_features_ALT(l, 0) = 1;
 		for (unsigned int z = 0; z < PC; ++z)
 		{
-			global_features_NULL(l, z) = Z(l, z);
-			global_features_ALT(l, z) = Z(l, z);
+			global_features_NULL(l, z+1) = Z(l, z);
+			global_features_ALT(l, z+1) = Z(l, z);
 		}
 		for (unsigned int c = 0; c < cov_count; ++c)
 		{
-			global_features_NULL(l, PC + c) = C(l, c);
-			global_features_ALT(l, PC + c) = C(l, c);
+			global_features_NULL(l, 1+PC + c) = C(l, c);
+			global_features_ALT(l, 1+PC + c) = C(l, c);
 		}
-		global_features_NULL(l, PC + cov_count) = totals[l];
-		global_features_ALT(l, PC + cov_count) = totals[l];
+		global_features_NULL(l, 1+PC + cov_count) = totals[l];
+		global_features_ALT(l, 1+PC + cov_count) = totals[l];
 	}
+	pthread_mutex_lock(&printMutex);
+
+	cout << global_features_NULL << endl;
+	cout << "--------------" << endl;
+	pthread_mutex_unlock(&printMutex);
 	// cout << "****" << endl;
 	// cout<< global_features_NULL <<endl;
 	null_model = linear_regression(global_features_NULL, Y);
@@ -418,6 +426,8 @@ int open_file_connection()
 	feature_z_file.open(PCS_EVEC_FILE);
 	ind_file.open(EIGEN_IND_FILE);
 	total_file.open(TOTAL_KMER_CNT_FILE);
+	pval_file.open(PVALS_TOP_FILE);
+
 	if ((int)covfile.size() > 0)
 	{
 		char cvv[200];
@@ -509,6 +519,7 @@ void *worker_thread_func(void *arg)
 				// cout << kmercounts[l][l1] << " ";
 				// pthread_mutex_unlock(&printMutex);
 			}
+			// cout << endl;
 
 			//create the fourth column of matrix
 			for (unsigned int l1 = 0; l1 < nrow; l1++)
@@ -521,6 +532,11 @@ void *worker_thread_func(void *arg)
 
 			MatrixXd B = linear_regression(thread_local_features_ALT, Y); // get coefficients of multivariate linear regression
 																		  // B =  feature X 1 matrix
+			// pthread_mutex_lock(&printMutex);
+
+			// cout <<B << endl;
+			// cout<<"--------------"<<endl;
+			// pthread_mutex_unlock(&printMutex);
 			// cout<<B<<endl;
 			// MatrixXd cov = covariance_matrix(thread_local_features_ALT);
 			// pthread_mutex_lock(&printMutex);
@@ -540,6 +556,7 @@ void *worker_thread_func(void *arg)
 			double alt_likelihood = 0;
 			double variance = (y_dif_y_hat.transpose() * y_dif_y_hat)(0, 0) / nrow;
 			alt_likelihood = -(ln2pi + log(variance) + 1) * nrow / 2.0;
+
 			// likelihoodAlt = -(ln2pi  + log(variance) + 1  ) * nrow/2.0;
 
 			// cout<<"alt_likelihood"<<alt_likelihood<<" "<<variance<< endl;
@@ -579,12 +596,21 @@ void *worker_thread_func(void *arg)
 			// 	null_likelihood += -(NULL_MODEL_FEATURE_COUNT * ln2pi + log(determinant) + (X_mu.transpose() * (cov.inverse() * X_mu)).determinant()) / 2.0;
 			// }
 			double log_likelihood_ratio = alt_likelihood - null_likelihood;
+			if (log_likelihood_ratio < 0)
+			{
+				log_likelihood_ratio = 0;
+			}
+			pthread_mutex_lock(&printMutex);
+			// cout << alt_likelihood << "  " << null_likelihood<<endl;
+
+			 cout << alt_likelihood << " " << log(variance) << null_likelihood << endl;
+			pthread_mutex_unlock(&printMutex);
 			output[l] = alglib::chisquarecdistribution(1, 2 * log_likelihood_ratio); // lth kmer significance
 
 			pthread_mutex_lock(&printMutex);
 			// cout << alt_likelihood << "  " << null_likelihood<<endl;
 
-			cout << output[l] << endl;
+			pval_file << output[l] << endl;
 			pthread_mutex_unlock(&printMutex);
 		}
 

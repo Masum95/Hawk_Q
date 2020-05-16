@@ -49,7 +49,11 @@ ptm <- proc.time()
 
 cnt = 0;
 while(TRUE)
-{
+{	
+	if( (totalKmers - cnt) <CHUNK_SIZE )
+	{
+		CHUNK_SIZE = totalKmers - cnt
+	}
 
 	kmercounts <- read.table(con,nrow=CHUNK_SIZE); # significant kmers 
 	cnt = (cnt + CHUNK_SIZE);
@@ -93,7 +97,7 @@ while(TRUE)
 	print(cnt==totalKmers);
 	write(ls,file='pvals_top.txt',ncolumns=1,append=TRUE,sep='\t');
 
-	if( (totalKmers - cnt) <CHUNK_SIZE )
+	if( (totalKmers - cnt) == 0)
 	{
 		print(nr);
 		break;
