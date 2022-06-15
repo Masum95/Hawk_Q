@@ -1,0 +1,8 @@
+Hawk_q
+59432 out_wo_bonf.kmerDiff
+0 out_unique.kmerDiff
+Total kmer in compareFile4 = 59433
+Matched with case/control 57021
+% of  kmer match with case  = 0.26403
+% of  kmer match with control  = 0.73597
+% of  kmer with no match  = 2412

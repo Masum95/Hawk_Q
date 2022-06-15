@@ -1,0 +1,44 @@
+
+configFile=/home/masum/Desktop/Hawk_Q/dirList
+
+#include config file 
+source $configFile
+#variables are ->  hawkDir , eigenstratDir , dataDir ,jellyfishDir ,sortDir
+
+isDiploid=1
+noInd=$(cat sorted_files.txt | wc -l); #no of sample
+
+#rename as per eigenstrat expected input format 
+
+mv gwas_info.txt gwas_eigenstratX.ind
+
+$hawkDir/hawk_q $noInd # compute likelihood and outputs P-value in out_wo_bonf
+
+mv total_kmer_counts.txt gwas_eigenstratX.total
+
+if [ "$isDiploid" == "0" ]; then
+	$eigenstratDir/bin/smartpca -V -p $hawkDir/parfile.txt > log_eigen.txt  # generates evec and eval files 
+else
+	$eigenstratDir/bin/smartpca -p $hawkDir/parfile.txt > log_eigen.txt
+fi
+
+
+$eigenstratDir/bin/evec2pca.perl 10 gwas_eigenstrat.evec gwas_eigenstratX.ind gwas_eigenstrat.pca # generates pca file
+
+tail -${noInd} gwas_eigenstrat.pca > pcs.evec
+
+sort -g  -k 2 -t $'\t' out_unique.kmerDiff > out_unique_sorted.kmerDiff #confusing 
+head -200000 out_unique_sorted.kmerDiff > out_unique_top.kmerDiff
+
+#Rscript $hawkDir/lin_reg.R
+$hawkDir/lin_reg -t 16 -p 2
+
+paste pvals_top.txt out_unique_top.kmerDiff  > pvals_top_merged.txt 	#size different, needs fix 
+sort -g -k 1 -t $'\t' pvals_top_merged.txt > pvals_top_merged_sorted.txt 
+
+$hawkDir/convertToFasta    
+
+rm case_out_w_bonf.kmerDiff
+rm case_out_wo_bonf.kmerDiff
+rm control_out_w_bonf.kmerDiff
+rm control_out_wo_bonf.kmerDiff        

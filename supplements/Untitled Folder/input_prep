@@ -1,0 +1,2 @@
+sed -i 's/Case/1/g; s/Control/0/g' gwas_info.txt
+awk '{print $3}' gwas_info.txt > phenotype_values.txt 
