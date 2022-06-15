@@ -1,0 +1,12 @@
+
+configFile=/home/masum/Desktop/Hawk_Q/dirList
+
+noInd=$(cat gwas_eigenstratX.total | wc -l); #no of sample
+source $configFile
+echo $hawkDir
+ 
+cd $hawkDir/
+make kmerTest
+cd testFolder/
+$hawkDir/kmerTest $noInd
+

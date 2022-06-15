@@ -5,12 +5,14 @@ CPP_FILE=${CPP_FOLDER}/*.cpp
 OBJECT_FILE=${CPP_FOLDER}/*.o
 
 
-all: lin_reg hawkq nonHawkq
+all: lin_reg hawkq nonHawkq 
 
 hawkq:	${OBJECT_FILE} hawk_q.cpp
 	g++ hawk_q.cpp $(OBJECT_FILE) -lm -lpthread -o hawk_q
 	
-
+kmerTest: ${OBJECT_FILE} kmerTest.cpp
+	g++ kmerTest.cpp $(OBJECT_FILE) -lm -lpthread -o kmerTest
+	
 nonHawkq: 
 	g++ bonf_fasta.cpp -o bonf_fasta
 	g++ kmersearch.cpp -o kmersearch

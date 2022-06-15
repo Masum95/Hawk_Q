@@ -622,6 +622,6 @@ void *worker_thread_func(void *arg)
 		}
 		pthread_mutex_unlock(&done_count_lock);
 	}
-
+	return 0;
 	// delete ((thread_info *)arg);
 }

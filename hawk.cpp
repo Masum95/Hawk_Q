@@ -149,18 +149,7 @@ char *getKmer(long long int val, char *kmer, int kmerLength)
 	return kmer;
 }
 
-unsigned long int getHash(unsigned long long int key)
-{
-	/*
-     key = (~key) + (key << 18); // key = (key << 18) - key - 1;
-     key = key ^ (key >> 31);
-     key = key * 21; // key = (key + (key << 2)) + (key << 4);
-     key = key ^ (key >> 11);
-     key = key + (key << 6);
-     key = key ^ (key >> 22);
-     */
-	return (unsigned long int)key;
-}
+
 
 double getPvalue(int a, int b, int c, int d)
 {

@@ -1,3 +1,7 @@
+#ifndef KMER_H
+
+#define KMER_H
+
 #define HASH_TABLE_LENGTH 50000003
 #define SIG_LEVEL 0.05
 #define CUTOFF 10000000
@@ -27,4 +31,5 @@ const char bases[256] = {
   O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
   O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O
 };
+#endif
 

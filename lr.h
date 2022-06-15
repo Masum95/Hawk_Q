@@ -333,6 +333,7 @@ MatrixXd linear_regression(const MatrixXd &X, const MatrixXd &Y)
 double log_likelihood_multivariate_lin_reg(std::vector<double> &y)
 {
 	int n = y.size();
+	return n;
 }
 
 // Assuming rows are sample and columns represent features
